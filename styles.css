@@ -1,0 +1,14 @@
+#dealerContainer {
+    display: flex;
+}
+#playerContainer {
+    display: flex;
+}
+.card {
+    width: 100px;
+    height: 150px;
+    border-radius: 1rem;
+    border: 1px solid black;
+    margin: 10px;
+    padding: 5px;
+}

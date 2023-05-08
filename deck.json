@@ -1,0 +1,262 @@
+[
+    {
+        "suit": "hearts",
+        "value": 2,
+        "punkte": 2
+    },
+    {
+        "suit": "hearts",
+        "value": 3,
+        "punkte": 3
+    },
+    {
+        "suit": "hearts",
+        "value": 4,
+        "punkte": 4
+    },
+    {
+        "suit": "hearts",
+        "value": 5,
+        "punkte": 5
+    },
+    {
+        "suit": "hearts",
+        "value": 6,
+        "punkte": 6
+    },
+    {
+        "suit": "hearts",
+        "value": 7,
+        "punkte": 7
+    },
+    {
+        "suit": "hearts",
+        "value": 8,
+        "punkte": 8
+    },
+    {
+        "suit": "hearts",
+        "value": 9,
+        "punkte": 9
+    },
+    {
+        "suit": "hearts",
+        "value": 10,
+        "punkte": 10
+    },
+    {
+        "suit": "hearts",
+        "value": "J",
+        "punkte": 10
+    },
+    {
+        "suit": "hearts",
+        "value": "Q",
+        "punkte": 10
+    },
+    {
+        "suit": "hearts",
+        "value": "K",
+        "punkte": 10
+    },
+    {
+        "suit": "hearts",
+        "value": "A",
+        "punkte": 11
+    },
+    {
+        "suit": "diamonds",
+        "value": 2,
+        "punkte": 2
+    },
+    {
+        "suit": "diamonds",
+        "value": 3,
+        "punkte": 3
+    },
+    {
+        "suit": "diamonds",
+        "value": 4,
+        "punkte": 4
+    },
+    {
+        "suit": "diamonds",
+        "value": 5,
+        "punkte": 5
+    },
+    {
+        "suit": "diamonds",
+        "value": 6,
+        "punkte": 6
+    },
+    {
+        "suit": "diamonds",
+        "value": 7,
+        "punkte": 7
+    },
+    {
+        "suit": "diamonds",
+        "value": 8,
+        "punkte": 8
+    },
+    {
+        "suit": "diamonds",
+        "value": 9,
+        "punkte": 9
+    },
+    {
+        "suit": "diamonds",
+        "value": 10,
+        "punkte": 10
+    },
+    {
+        "suit": "diamonds",
+        "value": "J",
+        "punkte": 10
+    },
+    {
+        "suit": "diamonds",
+        "value": "Q",
+        "punkte": 10
+    },
+    {
+        "suit": "diamonds",
+        "value": "K",
+        "punkte": 10
+    },
+    {
+        "suit": "diamonds",
+        "value": "A",
+        "punkte": 11
+    },
+    {
+        "suit": "clubs",
+        "value": 2,
+        "punkte": 2
+    },
+    {
+        "suit": "clubs",
+        "value": 3,
+        "punkte": 3
+    },
+    {
+        "suit": "clubs",
+        "value": 4,
+        "punkte": 4
+    },
+    {
+        "suit": "clubs",
+        "value": 5,
+        "punkte": 5
+    },
+    {
+        "suit": "clubs",
+        "value": 6,
+        "punkte": 6
+    },
+    {
+        "suit": "clubs",
+        "value": 7,
+        "punkte": 7
+    },
+    {
+        "suit": "clubs",
+        "value": 8,
+        "punkte": 8
+    },
+    {
+        "suit": "clubs",
+        "value": 9,
+        "punkte": 9
+    },
+    {
+        "suit": "clubs",
+        "value": 10,
+        "punkte": 10
+    },
+    {
+        "suit": "clubs",
+        "value": "J",
+        "punkte": 10
+    },
+    {
+        "suit": "clubs",
+        "value": "Q",
+        "punkte": 10
+    },
+    {
+        "suit": "clubs",
+        "value": "K",
+        "punkte": 10
+    },
+    {
+        "suit": "clubs",
+        "value": "A",
+        "punkte": 11
+    },
+    {
+        "suit": "spades",
+        "value": 2,
+        "punkte": 2
+    },
+    {
+        "suit": "spades",
+        "value": 3,
+        "punkte": 3
+    },
+    {
+        "suit": "spades",
+        "value": 4,
+        "punkte": 4
+    },
+    {
+        "suit": "spades",
+        "value": 5,
+        "punkte": 5
+    },
+    {
+        "suit": "spades",
+        "value": 6,
+        "punkte": 6
+    },
+    {
+        "suit": "spades",
+        "value": 7,
+        "punkte": 7
+    },
+    {
+        "suit": "spades",
+        "value": 8,
+        "punkte": 8
+    },
+    {
+        "suit": "spades",
+        "value": 9,
+        "punkte": 9
+    },
+    {
+        "suit": "spades",
+        "value": 10,
+        "punkte": 10
+    },
+    {
+        "suit": "spades",
+        "value": "J",
+        "punkte": 10
+    },
+    {
+        "suit": "spades",
+        "value": "Q",
+        "punkte": 10
+    },
+    {
+        "suit": "spades",
+        "value": "K",
+        "punkte": 10
+    },
+    {
+        "suit": "spades",
+        "value": "A",
+        "punkte": 11
+    }
+]
