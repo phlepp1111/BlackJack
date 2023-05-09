@@ -40,11 +40,10 @@ function draw() {
     let werte1 = deck.splice(0, 1)[0];
     let card1 = document.createElement("div");
     card1.setAttribute("class", "card ");
-    card1.innerHTML = werte1.suit + " " + werte1.value;
+    // card1.innerHTML = werte1.suit + " " + werte1.value;
     let image1 = document.createElement("img");
     image1.setAttribute("src", werte1.image);
     dealerCount += werte1.punkte;
-    console.log(werte1.punkte);
     card1.appendChild(image1);
     dealerContainer.appendChild(card1);
     dealerPunkte.innerHTML = dealerCount;
@@ -53,9 +52,10 @@ function draw() {
     let card2 = document.createElement("div");
     card2.setAttribute("class", "card ");
     let image2 = document.createElement("img");
+    image2.setAttribute("src", werte2.image);
     playerCount += werte2.punkte;
-    console.log(werte2.punkte);
-    card2.innerHTML = werte2.suit + " " + werte2.value;
+    // card2.innerHTML = werte2.suit + " " + werte2.value;
+    card2.appendChild(image2);
     playerContainer.appendChild(card2);
     playerPunkte.innerHTML = playerCount;
 
