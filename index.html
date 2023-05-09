@@ -8,14 +8,34 @@
         <title>BlackJack</title>
     </head>
     <body>
-        <button id="startGame">New Game</button>
+        <h1>BlackJack</h1>
         <div id="container">
-            <button id="hitMe">Hit Me</button>
-            <button id="fertig">fertig</button>
-            <div id="dealerPunkte"></div>
-            <div id="dealerContainer"></div>
-            <div id="playerPunkte"></div>
-            <div id="playerContainer"></div>
+            <div class="buttonContainer">
+                <button id="startGame">New Game</button>
+                <button id="hitMe">Hit Me</button>
+                <button id="fertig">fertig</button>
+            </div>
+            <div id="scoreContainer">
+                <div class="ScoreBox">
+                    <div id="dealerPunkte"></div>
+                    <div id="playerPunkte"></div>
+                </div>
+
+                <div class="ScoreBox">
+                    <div>
+                        <h3 id="dealerSiege">Dealersiege: 0</h3>
+                    </div>
+                </div>
+                <div class="ScoreBox">
+                    <div>
+                        <h3 id="playerSiege">Playersiege: 0</h3>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div id="dealerContainer"></div>
+                <div id="playerContainer"></div>
+            </div>
         </div>
         <script type="module" src="script.js"></script>
     </body>
