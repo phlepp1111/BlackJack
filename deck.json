@@ -2,261 +2,313 @@
     {
         "suit": "hearts",
         "value": 2,
-        "punkte": 2
+        "punkte": 2,
+        "image": "./images/2_of_hearts.png"
     },
     {
         "suit": "hearts",
         "value": 3,
-        "punkte": 3
+        "punkte": 3,
+        "image": "./images/3_of_hearts.png"
     },
     {
         "suit": "hearts",
         "value": 4,
-        "punkte": 4
+        "punkte": 4,
+        "image": "./images/4_of_hearts.png"
     },
     {
         "suit": "hearts",
         "value": 5,
-        "punkte": 5
+        "punkte": 5,
+        "image": "./images/5_of_hearts.png"
     },
     {
         "suit": "hearts",
         "value": 6,
-        "punkte": 6
+        "punkte": 6,
+        "image": "./images/6_of_hearts.png"
     },
     {
         "suit": "hearts",
         "value": 7,
-        "punkte": 7
+        "punkte": 7,
+        "image": "./images/7_of_hearts.png"
     },
     {
         "suit": "hearts",
         "value": 8,
-        "punkte": 8
+        "punkte": 8,
+        "image": "./images/8_of_hearts.png"
     },
     {
         "suit": "hearts",
         "value": 9,
-        "punkte": 9
+        "punkte": 9,
+        "image": "./images/9_of_hearts.png"
     },
     {
         "suit": "hearts",
         "value": 10,
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/10_of_hearts.png"
     },
     {
         "suit": "hearts",
         "value": "J",
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/jack_of_hearts.png"
     },
     {
         "suit": "hearts",
         "value": "Q",
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/queen_of_hearts.png"
     },
     {
         "suit": "hearts",
         "value": "K",
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/king_of_hearts.png"
     },
     {
         "suit": "hearts",
         "value": "A",
-        "punkte": 11
+        "punkte": 11,
+        "image": "./images/ace_of_hearts.png"
     },
     {
         "suit": "diamonds",
         "value": 2,
-        "punkte": 2
+        "punkte": 2,
+        "image": "./images/2_of_diamonds.png"
     },
     {
         "suit": "diamonds",
         "value": 3,
-        "punkte": 3
+        "punkte": 3,
+        "image": "./images/3_of_diamonds.png"
     },
     {
         "suit": "diamonds",
         "value": 4,
-        "punkte": 4
+        "punkte": 4,
+        "image": "./images/4_of_diamonds.png"
     },
     {
         "suit": "diamonds",
         "value": 5,
-        "punkte": 5
+        "punkte": 5,
+        "image": "./images/5_of_diamonds.png"
     },
     {
         "suit": "diamonds",
         "value": 6,
-        "punkte": 6
+        "punkte": 6,
+        "image": "./images/6_of_diamonds.png"
     },
     {
         "suit": "diamonds",
         "value": 7,
-        "punkte": 7
+        "punkte": 7,
+        "image": "./images/7_of_diamonds.png"
     },
     {
         "suit": "diamonds",
         "value": 8,
-        "punkte": 8
+        "punkte": 8,
+        "image": "./images/8_of_diamonds.png"
     },
     {
         "suit": "diamonds",
         "value": 9,
-        "punkte": 9
+        "punkte": 9,
+        "image": "./images/9_of_diamonds.png"
     },
     {
         "suit": "diamonds",
         "value": 10,
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/10_of_diamonds.png"
     },
     {
         "suit": "diamonds",
         "value": "J",
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/jack_of_diamonds.png"
     },
     {
         "suit": "diamonds",
         "value": "Q",
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/queen_of_diamonds.png"
     },
     {
         "suit": "diamonds",
         "value": "K",
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/king_of_diamonds.png"
     },
     {
         "suit": "diamonds",
         "value": "A",
-        "punkte": 11
+        "punkte": 11,
+        "image": "./images/ace_of_diamonds.png"
     },
     {
         "suit": "clubs",
         "value": 2,
-        "punkte": 2
+        "punkte": 2,
+        "image": "./images/2_of_clubs.png"
     },
     {
         "suit": "clubs",
         "value": 3,
-        "punkte": 3
+        "punkte": 3,
+        "image": "./images/3_of_clubs.png"
     },
     {
         "suit": "clubs",
         "value": 4,
-        "punkte": 4
+        "punkte": 4,
+        "image": "./images/4_of_clubs.png"
     },
     {
         "suit": "clubs",
         "value": 5,
-        "punkte": 5
+        "punkte": 5,
+        "image": "./images/5_of_clubs.png"
     },
     {
         "suit": "clubs",
         "value": 6,
-        "punkte": 6
+        "punkte": 6,
+        "image": "./images/6_of_clubs.png"
     },
     {
         "suit": "clubs",
         "value": 7,
-        "punkte": 7
+        "punkte": 7,
+        "image": "./images/7_of_clubs.png"
     },
     {
         "suit": "clubs",
         "value": 8,
-        "punkte": 8
+        "punkte": 8,
+        "image": "./images/8_of_clubs.png"
     },
     {
         "suit": "clubs",
         "value": 9,
-        "punkte": 9
+        "punkte": 9,
+        "image": "./images/9_of_clubs.png"
     },
     {
         "suit": "clubs",
         "value": 10,
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/10_of_clubs.png"
     },
     {
         "suit": "clubs",
         "value": "J",
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/jack_of_clubs.png"
     },
     {
         "suit": "clubs",
         "value": "Q",
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/queen_of_clubs.png"
     },
     {
         "suit": "clubs",
         "value": "K",
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/king_of_clubs.png"
     },
     {
         "suit": "clubs",
         "value": "A",
-        "punkte": 11
+        "punkte": 11,
+        "image": "./images/ace_of_clubs.png"
     },
     {
         "suit": "spades",
         "value": 2,
-        "punkte": 2
+        "punkte": 2,
+        "image": "./images/2_of_spades.png"
     },
     {
         "suit": "spades",
         "value": 3,
-        "punkte": 3
+        "punkte": 3,
+        "image": "./images/3_of_spades.png"
     },
     {
         "suit": "spades",
         "value": 4,
-        "punkte": 4
+        "punkte": 4,
+        "image": "./images/4_of_spades.png"
     },
     {
         "suit": "spades",
         "value": 5,
-        "punkte": 5
+        "punkte": 5,
+        "image": "./images/5_of_spades.png"
     },
     {
         "suit": "spades",
         "value": 6,
-        "punkte": 6
+        "punkte": 6,
+        "image": "./images/6_of_spades.png"
     },
     {
         "suit": "spades",
         "value": 7,
-        "punkte": 7
+        "punkte": 7,
+        "image": "./images/7_of_spades.png"
     },
     {
         "suit": "spades",
         "value": 8,
-        "punkte": 8
+        "punkte": 8,
+        "image": "./images/8_of_spades.png"
     },
     {
         "suit": "spades",
         "value": 9,
-        "punkte": 9
+        "punkte": 9,
+        "image": "./images/9_of_spades.png"
     },
     {
         "suit": "spades",
         "value": 10,
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/10_of_spades.png"
     },
     {
         "suit": "spades",
         "value": "J",
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/jack_of_spades.png"
     },
     {
         "suit": "spades",
         "value": "Q",
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/queen_of_spades.png"
     },
     {
         "suit": "spades",
         "value": "K",
-        "punkte": 10
+        "punkte": 10,
+        "image": "./images/king_of_spades.png"
     },
     {
         "suit": "spades",
         "value": "A",
-        "punkte": 11
+        "punkte": 11,
+        "image": "./images/ace_of_spades.png"
     }
 ]

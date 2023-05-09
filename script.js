@@ -41,14 +41,18 @@ function draw() {
     let card1 = document.createElement("div");
     card1.setAttribute("class", "card ");
     card1.innerHTML = werte1.suit + " " + werte1.value;
+    let image1 = document.createElement("img");
+    image1.setAttribute("src", werte1.image);
     dealerCount += werte1.punkte;
     console.log(werte1.punkte);
+    card1.appendChild(image1);
     dealerContainer.appendChild(card1);
     dealerPunkte.innerHTML = dealerCount;
 
     let werte2 = deck.splice(0, 1)[0];
     let card2 = document.createElement("div");
     card2.setAttribute("class", "card ");
+    let image2 = document.createElement("img");
     playerCount += werte2.punkte;
     console.log(werte2.punkte);
     card2.innerHTML = werte2.suit + " " + werte2.value;
