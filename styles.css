@@ -24,6 +24,13 @@ button {
     margin: 15px;
     padding: 10px;
 }
+dialog {
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.959);
+}
+dialog::backdrop {
+    background-color: rgba(86, 86, 86, 0.922);
+}
 .buttonContainer {
     position: fixed;
     height: 70vh;
@@ -64,6 +71,7 @@ button {
     border-radius: 0.5rem;
 }
 .ScoreBox {
+    background-color: rgba(255, 255, 255, 0.378);
     margin: 20px;
     border: 1px solid black;
     border-radius: 0.5rem;

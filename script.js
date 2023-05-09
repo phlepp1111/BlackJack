@@ -6,10 +6,14 @@ let dealerPunkte = document.getElementById("dealerPunkte");
 let playerPunkte = document.getElementById("playerPunkte");
 let dealerSiege = document.getElementById("dealerSiege");
 let playerSiege = document.getElementById("playerSiege");
+let modal = document.getElementById("modal");
+let winMessage = document.getElementById("winMessage");
+let winOkay = document.getElementById("winOkay");
 
 document.getElementById("hitMe").addEventListener("click", draw);
 document.getElementById("startGame").addEventListener("click", newGame);
 document.getElementById("fertig").addEventListener("click", checkWinFertig);
+document.getElementById("winOkay").addEventListener("click", newGame);
 
 let deck = [];
 
@@ -74,23 +78,29 @@ function checkWin() {
     if (playerCount > 21 && dealerCount <= 21) {
         siegeDealer++;
         dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
-        alert("Dealer Win!");
+        winMessage.innerHTML = "Dealer Wins!";
+        modal.showModal();
     } else if (dealerCount > 21 && playerCount <= 21) {
         siegePlayer++;
         playerSiege.innerHTML = "Playersiege: " + siegePlayer;
-        alert("Player Win!");
+        winMessage.innerHTML = "Player Wins!";
+        modal.showModal();
     } else if (playerCount === 21 && dealerCount !== 21) {
         siegePlayer++;
         playerSiege.innerHTML = "Playersiege: " + siegePlayer;
-        alert("Player Win!");
+        winMessage.innerHTML = "Player Wins!";
+        modal.showModal();
     } else if (dealerCount === 21 && playerCount !== 21) {
         siegeDealer++;
         dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
-        alert("Dealer Win!");
+        winMessage.innerHTML = "Dealer Wins!";
+        modal.showModal();
     } else if (playerCount === 21 && dealerCount === 21) {
-        alert("Unentschieden!");
+        winMessage.innerHTML = "Unentschieden!";
+        modal.showModal();
     } else if (playerCount > 21 && dealerCount > 21) {
-        alert("Unentschieden!");
+        winMessage.innerHTML = "Unentschieden!";
+        modal.showModal();
     }
 }
 function checkWinFertig() {
@@ -98,13 +108,16 @@ function checkWinFertig() {
         if (playerCount > dealerCount) {
             siegePlayer++;
             playerSiege.innerHTML = "Playersiege: " + siegePlayer;
-            alert("Player Win!");
+            winMessage.innerHTML = "Player Wins!";
+            modal.showModal();
         } else if (dealerCount > playerCount) {
             siegeDealer++;
             dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
-            alert("Dealer Win!");
+            winMessage.innerHTML = "Dealer Wins!";
+            modal.showModal();
         } else if (dealerCount === playerCount) {
-            alert("Unentschieden");
+            winMessage.innerHTML = "Unentschieden!";
+            modal.showModal();
         }
     } else {
         checkWin();
