@@ -7,6 +7,7 @@ let playerPunkte = document.getElementById("playerPunkte");
 
 document.getElementById("hitMe").addEventListener("click", draw);
 document.getElementById("startGame").addEventListener("click", newGame);
+document.getElementById("fertig").addEventListener("click", checkWinFertig);
 
 let deck = [...newDeck];
 Shuffle(deck);
@@ -68,6 +69,20 @@ function checkWin() {
         alert("Dealer Win!");
     } else if (playerCount === 21 && dealerCount === 21) {
         alert("Unentschieden!");
+    } else if (playerCount > 21 && dealerCount > 21) {
+        alert("Unentschieden!");
+    }
+}
+function checkWinFertig() {
+    if (playerCount < 21 && dealerCount < 21) {
+        if (playerCount > dealerCount) {
+            alert("Player Win!");
+        } else if (dealerCount > playerCount) {
+            alert("Dealer Win!");
+        } else if (dealerCount === playerCount) {
+            alert("Unentschieden");
+        }
     } else {
+        checkWin();
     }
 }

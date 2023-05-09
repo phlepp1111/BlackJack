@@ -1,9 +1,12 @@
-#dealerContainer {
-    display: flex;
+body {
+    text-align: center;
 }
+#dealerContainer,
 #playerContainer {
     display: flex;
+    justify-content: center;
 }
+
 .card {
     width: 100px;
     height: 150px;
