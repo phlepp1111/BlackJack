@@ -65,6 +65,8 @@ function Shuffle(cards) {
 }
 
 function draw() {
+    playerCount = 0;
+    dealerCount = 0;
     let werte1 = deck.splice(0, 1)[0];
     dealerDraw.push(werte1);
     dealerDraw.sort((a, b) => a.punkte - b.punkte);
@@ -73,15 +75,27 @@ function draw() {
     card1.setAttribute = ("name", werte1.suit + " " + werte1.value);
     let image1 = document.createElement("img");
     image1.setAttribute("src", "./images/card back red.png");
-    if (werte1.punkte === 11) {
-        if (dealerCount <= 10) {
-            dealerCount += werte1.punkte;
+    for (let i = 0; i < dealerDraw.length; i++) {
+        if (dealerDraw[i].punkte === 11) {
+            if (dealerCount <= 10) {
+                dealerCount += dealerDraw[i].punkte;
+            } else {
+                dealerCount++;
+            }
         } else {
-            dealerCount++;
+            dealerCount += dealerDraw[i].punkte;
         }
-    } else {
-        dealerCount += werte1.punkte;
     }
+
+    // if (werte1.punkte === 11) {
+    //     if (dealerCount <= 10) {
+    //         dealerCount += werte1.punkte;
+    //     } else {
+    //         dealerCount++;
+    //     }
+    // } else {
+    //     dealerCount += werte1.punkte;
+    // }
     card1.appendChild(image1);
     dealerContainer.appendChild(card1);
     dealerPunkteModal.innerHTML = "<h3>Punkte Dealer: " + dealerCount + "</h3>";
@@ -89,20 +103,30 @@ function draw() {
     let werte2 = deck.splice(0, 1)[0];
     playerDraw.push(werte2);
     playerDraw.sort((a, b) => a.punkte - b.punkte);
-    console.log(playerDraw);
     let card2 = document.createElement("div");
     card2.setAttribute("class", "card ");
     let image2 = document.createElement("img");
     image2.setAttribute("src", werte2.image);
-    if (werte2.punkte === 11) {
-        if (playerCount <= 10) {
-            playerCount += werte2.punkte;
+    for (let i = 0; i < playerDraw.length; i++) {
+        if (playerDraw[i].punkte === 11) {
+            if (playerCount <= 10) {
+                playerCount += playerDraw[i].punkte;
+            } else {
+                playerCount++;
+            }
         } else {
-            playerCount++;
+            playerCount += playerDraw[i].punkte;
         }
-    } else {
-        playerCount += werte2.punkte;
     }
+    // if (werte2.punkte === 11) {
+    //     if (playerCount <= 10) {
+    //         playerCount += werte2.punkte;
+    //     } else {
+    //         playerCount++;
+    //     }
+    // } else {
+    //     playerCount += werte2.punkte;
+    // }
 
     card2.setAttribute = ("name", werte2.suit + " " + werte2.value);
     card2.appendChild(image2);
@@ -146,8 +170,9 @@ function checkWin() {
     }
 }
 function checkWinFertig() {
-    playerDraw = 0;
-    dealerDraw = 0;
+    modal.close();
+    playerCount = 0;
+    dealerCount = 0;
     for (let i = 0; i < playerDraw.length; i++) {
         if (playerDraw[i].punkte === 11) {
             if (playerCount <= 10) {
