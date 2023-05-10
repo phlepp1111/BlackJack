@@ -9,14 +9,16 @@
     </head>
     <body>
         <dialog id="modal">
-            <form>
+            <div>
                 <h3 id="winMessage"></h3>
+                <div id="dealerPunkteModal"></div>
+                <div id="playerPunkteModal"></div>
                 <div>
-                    <button id="winOkay" value="default" formmethod="dialog">
+                    <button id="winOkay" value="cancel" formmethod="dialog">
                         Okay
                     </button>
                 </div>
-            </form>
+            </div>
         </dialog>
         <h1>BlackJack</h1>
         <div id="container">
@@ -27,7 +29,6 @@
             </div>
             <div id="scoreContainer">
                 <div class="ScoreBox">
-                    <div id="dealerPunkte"></div>
                     <div id="playerPunkte"></div>
                 </div>
 
