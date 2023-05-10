@@ -87,15 +87,6 @@ function draw() {
         }
     }
 
-    // if (werte1.punkte === 11) {
-    //     if (dealerCount <= 10) {
-    //         dealerCount += werte1.punkte;
-    //     } else {
-    //         dealerCount++;
-    //     }
-    // } else {
-    //     dealerCount += werte1.punkte;
-    // }
     card1.appendChild(image1);
     dealerContainer.appendChild(card1);
     dealerPunkteModal.innerHTML = "<h3>Punkte Dealer: " + dealerCount + "</h3>";
@@ -118,15 +109,6 @@ function draw() {
             playerCount += playerDraw[i].punkte;
         }
     }
-    // if (werte2.punkte === 11) {
-    //     if (playerCount <= 10) {
-    //         playerCount += werte2.punkte;
-    //     } else {
-    //         playerCount++;
-    //     }
-    // } else {
-    //     playerCount += werte2.punkte;
-    // }
 
     card2.setAttribute = ("name", werte2.suit + " " + werte2.value);
     card2.appendChild(image2);
