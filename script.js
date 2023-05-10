@@ -19,15 +19,11 @@ let siegePlayer = 0;
 document.getElementById("hitMe").addEventListener("click", draw);
 document.getElementById("startGame").addEventListener("click", newGame);
 document.getElementById("fertig").addEventListener("click", checkWinFertig);
-document.getElementById("winOkay").addEventListener("click", timeOutGame);
+document.getElementById("winOkay").addEventListener("click", newGame);
 newGame();
-function timeOutGame() {
-    if (modal.open) {
-        modal.close();
-    }
-    setTimeout(newGame(), 500);
-}
+
 function newGame() {
+    modal.close();
     dealerContainer.innerHTML = "";
     playerContainer.innerHTML = "";
     playerPunkte.innerHTML = "";
@@ -57,7 +53,15 @@ function draw() {
     card1.setAttribute = ("name", werte1.suit + " " + werte1.value);
     let image1 = document.createElement("img");
     image1.setAttribute("src", "./images/card back red.png");
-    dealerCount += werte1.punkte;
+    if (werte1.punkte === 11) {
+        if (dealerCount <= 10) {
+            dealerCount += werte1.punkte;
+        } else {
+            dealerCount++;
+        }
+    } else {
+        dealerCount += werte1.punkte;
+    }
     card1.appendChild(image1);
     dealerContainer.appendChild(card1);
     dealerPunkteModal.innerHTML = "<h3>Punkte Dealer: " + dealerCount + "</h3>";
@@ -91,7 +95,6 @@ function checkWin() {
         siegeDealer++;
         dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
         winMessage.innerHTML = "<h3>Dealer Wins!</h3>";
-
         modal.showModal();
     } else if (dealerCount > 21 && playerCount <= 21) {
         siegePlayer++;
@@ -102,14 +105,17 @@ function checkWin() {
         siegePlayer++;
         playerSiege.innerHTML = "Playersiege: " + siegePlayer;
         winMessage.innerHTML = "Player Wins!";
+        modal.close();
         modal.showModal();
     } else if (dealerCount === 21 && playerCount !== 21) {
         siegeDealer++;
         dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
         winMessage.innerHTML = "Dealer Wins!";
+        modal.close();
         modal.showModal();
     } else if (playerCount === 21 && dealerCount === 21) {
         winMessage.innerHTML = "Unentschieden!";
+        modal.close();
         modal.showModal();
     } else if (playerCount > 21 && dealerCount > 21) {
         winMessage.innerHTML = "Unentschieden!";

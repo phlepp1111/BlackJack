@@ -76,3 +76,27 @@ dialog::backdrop {
     border: 1px solid black;
     border-radius: 0.5rem;
 }
+#hitMe {
+    background-image: url(./images/card\ back\ red.png);
+    background-size: 100%;
+    padding: 0;
+    width: 10em;
+    height: 14em;
+    border-radius: 0.5rem;
+    /* border: 1px solid black; */
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    box-shadow: 0 5px 5px 0 rgb(43, 43, 43);
+    object-fit: cover;
+}
+#hitMe > * {
+    width: fit-content;
+    background-color: rgba(255, 255, 255, 0.849);
+    border-radius: 0.5rem;
+    margin: auto;
+    padding: 5px;
+}
+#hitMe:hover {
+    box-shadow: 0 7px 7px 0 rgb(0, 0, 0);
+}
