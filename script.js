@@ -15,21 +15,39 @@ let dealerCount = 0;
 let playerCount = 0;
 let siegeDealer = 0;
 let siegePlayer = 0;
+let dealerDraw = [];
+let playerDraw = [];
 
 document.getElementById("hitMe").addEventListener("click", draw);
 document.getElementById("startGame").addEventListener("click", newGame);
 document.getElementById("fertig").addEventListener("click", checkWinFertig);
 document.getElementById("winOkay").addEventListener("click", newGame);
+document.getElementById("doubleDown").addEventListener("click", doubleDown);
+
 newGame();
 
+function doubleDown() {
+    draw();
+    checkWinFertig();
+    checkWinFertig();
+}
 function newGame() {
     modal.close();
+    dealerDraw = [];
+    playerDraw = [];
     dealerContainer.innerHTML = "";
     playerContainer.innerHTML = "";
     playerPunkte.innerHTML = "";
     dealerCount = 0;
     playerCount = 0;
-    deck = [...newDeck];
+    deck = [
+        ...newDeck,
+        ...newDeck,
+        ...newDeck,
+        ...newDeck,
+        ...newDeck,
+        ...newDeck,
+    ];
     Shuffle(deck);
     draw();
     draw();
@@ -48,6 +66,8 @@ function Shuffle(cards) {
 
 function draw() {
     let werte1 = deck.splice(0, 1)[0];
+    dealerDraw.push(werte1);
+    dealerDraw.sort((a, b) => a.punkte - b.punkte);
     let card1 = document.createElement("div");
     card1.setAttribute("class", "card ");
     card1.setAttribute = ("name", werte1.suit + " " + werte1.value);
@@ -67,6 +87,9 @@ function draw() {
     dealerPunkteModal.innerHTML = "<h3>Punkte Dealer: " + dealerCount + "</h3>";
 
     let werte2 = deck.splice(0, 1)[0];
+    playerDraw.push(werte2);
+    playerDraw.sort((a, b) => a.punkte - b.punkte);
+    console.log(playerDraw);
     let card2 = document.createElement("div");
     card2.setAttribute("class", "card ");
     let image2 = document.createElement("img");
@@ -123,6 +146,32 @@ function checkWin() {
     }
 }
 function checkWinFertig() {
+    playerDraw = 0;
+    dealerDraw = 0;
+    for (let i = 0; i < playerDraw.length; i++) {
+        if (playerDraw[i].punkte === 11) {
+            if (playerCount <= 10) {
+                playerCount += playerDraw[i].punkte;
+            } else {
+                playerCount++;
+            }
+        } else {
+            playerCount += playerDraw[i].punkte;
+        }
+    }
+    for (let i = 0; i < dealerDraw.length; i++) {
+        if (dealerDraw[i].punkte === 11) {
+            if (dealerCount <= 10) {
+                dealerCount += playerDraw[i].punkte;
+            } else {
+                dealerCount++;
+            }
+        } else {
+            dealerCount += dealerDraw[i].punkte;
+        }
+    }
+    playerPunkte.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
+    playerPunkteModal.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
     if (playerCount < 21 && dealerCount < 21) {
         if (playerCount > dealerCount) {
             siegePlayer++;
