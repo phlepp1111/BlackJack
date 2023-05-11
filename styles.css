@@ -46,10 +46,15 @@ dialog::backdrop {
 }
 #dealerContainer,
 #playerContainer {
+    background-color: rgba(255, 255, 255, 0.114);
     display: flex;
     justify-content: center;
-    height: 15em;
-    margin: 10px;
+    height: 17em;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    /* box-shadow: 0 5px 5px 0 rgb(43, 43, 43); */
+    width: 65vw;
 }
 
 .card {

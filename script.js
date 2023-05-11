@@ -52,6 +52,7 @@ function newGame() {
     Shuffle(deck);
     draw();
     draw();
+    dealerCardsDraw(0);
 }
 function Shuffle(cards) {
     //Fisher-Yates-Shuffle
@@ -92,7 +93,7 @@ function draw() {
     playerPunkte.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
     playerPunkteModal.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
 }
-function dealerCardsDraw() {
+function dealerCardsDraw(x) {
     dealerCount = 0;
     let werte1 = deck.splice(0, 1)[0];
     dealerDraw.push(werte1);
@@ -115,8 +116,11 @@ function dealerCardsDraw() {
     }
     card1.appendChild(image1);
     dealerContainer.appendChild(card1);
+    if (x === 0) {
+        return;
+    }
     while (dealerCount < 17) {
-        dealerCardsDraw();
+        dealerCardsDraw(1);
     }
 }
 function checkWin(x) {
