@@ -44,29 +44,47 @@ dialog::backdrop {
     background-color: rgba(255, 255, 255, 0.378);
     /* justify-content: center; */
 }
-#dealerContainer,
-#playerContainer {
-    background-color: rgba(255, 255, 255, 0.114);
+#dealerContainer {
+    width: 65vw;
+    margin: 10px auto 10px;
     display: flex;
+}
+#dealerContainer,
+#playerContainer,
+#playerContainer2 {
+    background-color: rgba(255, 255, 255, 0.114);
+
     justify-content: center;
     height: 17em;
-    margin: auto;
-    border: 1px solid black;
-    border-radius: 0.5rem;
-    /* box-shadow: 0 5px 5px 0 rgb(43, 43, 43); */
-    width: 65vw;
-}
 
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 5px 0 rgb(63, 63, 63);
+}
+#playerContainerBox {
+    width: 65vw;
+    display: flex;
+    margin: 10px auto 10px;
+}
+#playerContainer,
+#playerContainer2 {
+    margin: 10px auto 10px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+#playerContainer {
+    display: flex;
+}
 .card {
     width: 10em;
     height: 15em;
     border-radius: 0.5rem;
-    /* border: 1px solid black; */
     margin: 10px;
     overflow: hidden;
     box-shadow: 0 5px 5px 0 rgb(43, 43, 43);
 }
 #scoreContainer {
+    display: flex;
+    flex-direction: column;
     background-color: rgba(255, 255, 255, 0.378);
     position: fixed;
     height: 70vh;
@@ -106,4 +124,7 @@ dialog::backdrop {
 }
 #hitMe:hover {
     box-shadow: 0 7px 7px 0 rgb(0, 0, 0);
+}
+.splitOFF {
+    display: none;
 }

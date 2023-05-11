@@ -13,6 +13,7 @@
                 <h3 id="winMessage"></h3>
                 <div id="dealerPunkteModal"></div>
                 <div id="playerPunkteModal"></div>
+                <div id="splitPunkteModal"></div>
                 <div>
                     <button id="winOkay" value="cancel" formmethod="dialog">
                         Okay
@@ -27,6 +28,7 @@
                 <button id="hitMe">
                     <h3>New Card</h3>
                 </button>
+                <button id="splitBtn">Split</button>
                 <button id="doubleDown">Double Down</button>
                 <button id="fertig">Stand</button>
             </div>
@@ -45,10 +47,15 @@
                         <h3 id="playerSiege">Playersiege: 0</h3>
                     </div>
                 </div>
+                <button id="splitNewCard">New Card</button>
+                <button id="splitFertig">Stand</button>
             </div>
             <div>
                 <div id="dealerContainer"></div>
-                <div id="playerContainer"></div>
+                <div id="playerContainerBox">
+                    <div id="playerContainer"></div>
+                    <div id="playerContainer2" class="splitOFF"></div>
+                </div>
             </div>
         </div>
         <script type="module" src="script.js"></script>

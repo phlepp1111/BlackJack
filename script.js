@@ -9,14 +9,21 @@ let modal = document.getElementById("modal");
 let winMessage = document.getElementById("winMessage");
 let dealerPunkteModal = document.getElementById("dealerPunkteModal");
 let playerPunkteModal = document.getElementById("playerPunkteModal");
+let splitPunkteModal = document.getElementById("splitPunkteModal");
+let splitBtn = document.getElementById("splitBtn");
+let splitContainer = document.getElementById("playerContainer2");
+let splitStand = document.getElementById("splitFertig");
+let splitNewCard = document.getElementById("splitNewCard");
 
 let deck = [];
 let dealerCount = 0;
 let playerCount = 0;
+let splitCount = 0;
 let siegeDealer = 0;
 let siegePlayer = 0;
 let dealerDraw = [];
 let playerDraw = [];
+let splitDraw = [];
 
 document.getElementById("hitMe").addEventListener("click", draw);
 document.getElementById("startGame").addEventListener("click", newGame);
@@ -25,6 +32,9 @@ document.getElementById("fertig").addEventListener("click", function () {
 });
 document.getElementById("winOkay").addEventListener("click", newGame);
 document.getElementById("doubleDown").addEventListener("click", doubleDown);
+splitBtn.addEventListener("click", split);
+splitNewCard.addEventListener("click", splitCardsDraw);
+// splitStand.addEventListener("click", splitCardsStand);
 
 newGame();
 
@@ -36,11 +46,16 @@ function newGame() {
     modal.close();
     dealerDraw = [];
     playerDraw = [];
+    splitDraw = [];
     dealerContainer.innerHTML = "";
     playerContainer.innerHTML = "";
     playerPunkte.innerHTML = "";
     dealerCount = 0;
     playerCount = 0;
+    splitBtn.removeAttribute("class", "splitOFF");
+    document.getElementById("doubleDown").removeAttribute("class", "splitOFF");
+    splitContainer.setAttribute("class", "splitOFF");
+    splitContainer.style.display = "none";
     deck = [
         ...newDeck,
         ...newDeck,
@@ -52,6 +67,7 @@ function newGame() {
     Shuffle(deck);
     draw();
     draw();
+    splitCheck();
     dealerCardsDraw(0);
 }
 function Shuffle(cards) {
@@ -64,10 +80,36 @@ function Shuffle(cards) {
     }
     return cards;
 }
-
+function split() {
+    splitBtn.setAttribute("class", "splitOFF");
+    splitContainer.removeAttribute("class", "splitOFF");
+    splitContainer.style.display = "flex";
+    // splitContainer.style.flexWrap = "wrap";
+    splitStand.removeAttribute("class", "splitOFF");
+    splitNewCard.removeAttribute("class", "splitOFF");
+    document.getElementById("doubleDown").setAttribute("class", "splitOFF");
+    playerContainer.removeChild(playerContainer.children[0]);
+    let splitCard = playerDraw.splice(0, 1)[0];
+    console.log("splitcard:", splitCard);
+    console.log("playerDraw:", playerDraw);
+    splitDraw.push(splitCard);
+    console.log("splitDraw:", splitDraw);
+    let card2 = document.createElement("div");
+    card2.setAttribute("class", "card ");
+    let image2 = document.createElement("img");
+    image2.setAttribute("src", splitDraw[0].image);
+}
+function splitCheck() {
+    splitBtn.setAttribute("class", "splitOFF");
+    splitStand.setAttribute("class", "splitOFF");
+    splitNewCard.setAttribute("class", "splitOFF");
+    // console.log(playerDraw[0].value, playerDraw[1].value);
+    if (playerDraw[0].value === playerDraw[1].value) {
+        splitBtn.removeAttribute("class", "splitOFF");
+    }
+}
 function draw() {
     playerCount = 0;
-
     let werte2 = deck.splice(0, 1)[0];
     playerDraw.push(werte2);
     playerDraw.sort((a, b) => a.punkte - b.punkte);
@@ -86,13 +128,39 @@ function draw() {
             playerCount += playerDraw[i].punkte;
         }
     }
-
     card2.setAttribute = ("name", werte2.suit + " " + werte2.value);
     card2.appendChild(image2);
     playerContainer.appendChild(card2);
     playerPunkte.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
     playerPunkteModal.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
 }
+function splitCardsDraw() {
+    splitCount = 0;
+    let werte2 = deck.splice(0, 1)[0];
+    splitDraw.push(werte2);
+    splitDraw.sort((a, b) => a.punkte - b.punkte);
+    let card2 = document.createElement("div");
+    card2.setAttribute("class", "card ");
+    let image2 = document.createElement("img");
+    image2.setAttribute("src", werte2.image);
+    for (let i = 0; i < splitDraw.length; i++) {
+        if (splitDraw[i].punkte === 11) {
+            if (splitCount <= 10) {
+                splitCount += splitDraw[i].punkte;
+            } else {
+                splitCount++;
+            }
+        } else {
+            splitCount += splitDraw[i].punkte;
+        }
+    }
+    card2.setAttribute = ("name", werte2.suit + " " + werte2.value);
+    card2.appendChild(image2);
+    splitContainer.appendChild(card2);
+    splitPunkte.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
+    splitPunkteModal.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
+}
+
 function dealerCardsDraw(x) {
     dealerCount = 0;
     let werte1 = deck.splice(0, 1)[0];
