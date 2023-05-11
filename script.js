@@ -1,19 +1,20 @@
 import newDeck from "./deck.json" assert { type: "json" };
 
-let dealerContainer = document.getElementById("dealerContainer");
-let playerContainer = document.getElementById("playerContainer");
-let playerPunkte = document.getElementById("playerPunkte");
-let dealerSiege = document.getElementById("dealerSiege");
-let playerSiege = document.getElementById("playerSiege");
-let modal = document.getElementById("modal");
-let winMessage = document.getElementById("winMessage");
-let dealerPunkteModal = document.getElementById("dealerPunkteModal");
-let playerPunkteModal = document.getElementById("playerPunkteModal");
-let splitPunkteModal = document.getElementById("splitPunkteModal");
-let splitBtn = document.getElementById("splitBtn");
-let splitContainer = document.getElementById("playerContainer2");
-let splitStand = document.getElementById("splitFertig");
-let splitNewCard = document.getElementById("splitNewCard");
+const dealerContainer = document.getElementById("dealerContainer");
+const playerContainer = document.getElementById("playerContainer");
+const playerPunkte = document.getElementById("playerPunkte");
+const splitPunkte = document.getElementById("splitPunkte");
+const dealerSiege = document.getElementById("dealerSiege");
+const playerSiege = document.getElementById("playerSiege");
+const modal = document.getElementById("modal");
+const winMessage = document.getElementById("winMessage");
+const dealerPunkteModal = document.getElementById("dealerPunkteModal");
+const playerPunkteModal = document.getElementById("playerPunkteModal");
+const splitPunkteModal = document.getElementById("splitPunkteModal");
+const splitBtn = document.getElementById("splitBtn");
+const splitContainer = document.getElementById("playerContainer2");
+const splitStand = document.getElementById("splitFertig");
+const splitNewCard = document.getElementById("splitNewCard");
 
 let deck = [];
 let dealerCount = 0;
@@ -84,20 +85,20 @@ function split() {
     splitBtn.setAttribute("class", "splitOFF");
     splitContainer.removeAttribute("class", "splitOFF");
     splitContainer.style.display = "flex";
-    // splitContainer.style.flexWrap = "wrap";
     splitStand.removeAttribute("class", "splitOFF");
     splitNewCard.removeAttribute("class", "splitOFF");
     document.getElementById("doubleDown").setAttribute("class", "splitOFF");
     playerContainer.removeChild(playerContainer.children[0]);
     let splitCard = playerDraw.splice(0, 1)[0];
-    console.log("splitcard:", splitCard);
-    console.log("playerDraw:", playerDraw);
     splitDraw.push(splitCard);
-    console.log("splitDraw:", splitDraw);
     let card2 = document.createElement("div");
     card2.setAttribute("class", "card ");
     let image2 = document.createElement("img");
     image2.setAttribute("src", splitDraw[0].image);
+    card2.appendChild(image2);
+    splitContainer.appendChild(card2);
+    draw();
+    splitCardsDraw();
 }
 function splitCheck() {
     splitBtn.setAttribute("class", "splitOFF");
@@ -157,8 +158,8 @@ function splitCardsDraw() {
     card2.setAttribute = ("name", werte2.suit + " " + werte2.value);
     card2.appendChild(image2);
     splitContainer.appendChild(card2);
-    splitPunkte.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
-    splitPunkteModal.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
+    splitPunkte.innerHTML = "<h3>Punkte Split: " + splitCount + "</h3>";
+    splitPunkteModal.innerHTML = "<h3>Punkte Split: " + splitCount + "</h3>";
 }
 
 function dealerCardsDraw(x) {
