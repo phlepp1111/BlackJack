@@ -48,6 +48,8 @@ dialog::backdrop {
 #playerContainer {
     display: flex;
     justify-content: center;
+    height: 15em;
+    margin: 10px;
 }
 
 .card {

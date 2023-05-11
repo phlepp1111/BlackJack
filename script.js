@@ -20,7 +20,9 @@ let playerDraw = [];
 
 document.getElementById("hitMe").addEventListener("click", draw);
 document.getElementById("startGame").addEventListener("click", newGame);
-document.getElementById("fertig").addEventListener("click", checkWinFertig);
+document.getElementById("fertig").addEventListener("click", function () {
+    checkWinFertig(1);
+});
 document.getElementById("winOkay").addEventListener("click", newGame);
 document.getElementById("doubleDown").addEventListener("click", doubleDown);
 
@@ -28,8 +30,7 @@ newGame();
 
 function doubleDown() {
     draw();
-    checkWinFertig();
-    checkWinFertig();
+    checkWinFertig(2);
 }
 function newGame() {
     modal.close();
@@ -51,7 +52,6 @@ function newGame() {
     Shuffle(deck);
     draw();
     draw();
-    checkWin();
 }
 function Shuffle(cards) {
     //Fisher-Yates-Shuffle
@@ -66,30 +66,6 @@ function Shuffle(cards) {
 
 function draw() {
     playerCount = 0;
-    dealerCount = 0;
-    let werte1 = deck.splice(0, 1)[0];
-    dealerDraw.push(werte1);
-    dealerDraw.sort((a, b) => a.punkte - b.punkte);
-    let card1 = document.createElement("div");
-    card1.setAttribute("class", "card ");
-    card1.setAttribute = ("name", werte1.suit + " " + werte1.value);
-    let image1 = document.createElement("img");
-    image1.setAttribute("src", "./images/card back red.png");
-    for (let i = 0; i < dealerDraw.length; i++) {
-        if (dealerDraw[i].punkte === 11) {
-            if (dealerCount <= 10) {
-                dealerCount += dealerDraw[i].punkte;
-            } else {
-                dealerCount++;
-            }
-        } else {
-            dealerCount += dealerDraw[i].punkte;
-        }
-    }
-
-    card1.appendChild(image1);
-    dealerContainer.appendChild(card1);
-    dealerPunkteModal.innerHTML = "<h3>Punkte Dealer: " + dealerCount + "</h3>";
 
     let werte2 = deck.splice(0, 1)[0];
     playerDraw.push(werte2);
@@ -115,29 +91,53 @@ function draw() {
     playerContainer.appendChild(card2);
     playerPunkte.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
     playerPunkteModal.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
-
-    checkWin();
 }
-
-function checkWin() {
+function dealerCardsDraw() {
+    dealerCount = 0;
+    let werte1 = deck.splice(0, 1)[0];
+    dealerDraw.push(werte1);
+    dealerDraw.sort((a, b) => a.punkte - b.punkte);
+    let card1 = document.createElement("div");
+    card1.setAttribute("class", "card ");
+    card1.setAttribute = ("name", werte1.suit + " " + werte1.value);
+    let image1 = document.createElement("img");
+    image1.setAttribute("src", werte1.image);
+    for (let i = 0; i < dealerDraw.length; i++) {
+        if (dealerDraw[i].punkte === 11) {
+            if (dealerCount <= 10) {
+                dealerCount += dealerDraw[i].punkte;
+            } else {
+                dealerCount++;
+            }
+        } else {
+            dealerCount += dealerDraw[i].punkte;
+        }
+    }
+    card1.appendChild(image1);
+    dealerContainer.appendChild(card1);
+    while (dealerCount < 17) {
+        dealerCardsDraw();
+    }
+}
+function checkWin(x) {
     if (playerCount > 21 && dealerCount <= 21) {
-        siegeDealer++;
+        siegeDealer += x;
         dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
         winMessage.innerHTML = "<h3>Dealer Wins!</h3>";
         modal.showModal();
     } else if (dealerCount > 21 && playerCount <= 21) {
-        siegePlayer++;
+        siegePlayer += x;
         playerSiege.innerHTML = "Playersiege: " + siegePlayer;
         winMessage.innerHTML = "Player Wins!";
         modal.showModal();
     } else if (playerCount === 21 && dealerCount !== 21) {
-        siegePlayer++;
+        siegePlayer += x;
         playerSiege.innerHTML = "Playersiege: " + siegePlayer;
         winMessage.innerHTML = "Player Wins!";
         modal.close();
         modal.showModal();
     } else if (dealerCount === 21 && playerCount !== 21) {
-        siegeDealer++;
+        siegeDealer += x;
         dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
         winMessage.innerHTML = "Dealer Wins!";
         modal.close();
@@ -151,10 +151,12 @@ function checkWin() {
         modal.showModal();
     }
 }
-function checkWinFertig() {
+function checkWinFertig(x) {
     modal.close();
+    dealerCardsDraw();
     playerCount = 0;
     dealerCount = 0;
+
     for (let i = 0; i < playerDraw.length; i++) {
         if (playerDraw[i].punkte === 11) {
             if (playerCount <= 10) {
@@ -169,7 +171,7 @@ function checkWinFertig() {
     for (let i = 0; i < dealerDraw.length; i++) {
         if (dealerDraw[i].punkte === 11) {
             if (dealerCount <= 10) {
-                dealerCount += playerDraw[i].punkte;
+                dealerCount += dealerDraw[i].punkte;
             } else {
                 dealerCount++;
             }
@@ -179,14 +181,16 @@ function checkWinFertig() {
     }
     playerPunkte.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
     playerPunkteModal.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
+    dealerPunkteModal.innerHTML = "<h3>Punkte Dealer: " + dealerCount + "</h3>";
+
     if (playerCount < 21 && dealerCount < 21) {
         if (playerCount > dealerCount) {
-            siegePlayer++;
+            siegePlayer += x;
             playerSiege.innerHTML = "Playersiege: " + siegePlayer;
             winMessage.innerHTML = "Player Wins!";
             modal.showModal();
         } else if (dealerCount > playerCount) {
-            siegeDealer++;
+            siegeDealer += x;
             dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
             winMessage.innerHTML = "Dealer Wins!";
             modal.showModal();
@@ -195,6 +199,6 @@ function checkWinFertig() {
             modal.showModal();
         }
     } else {
-        checkWin();
+        checkWin(x);
     }
 }
