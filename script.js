@@ -52,6 +52,7 @@ function newGame() {
     playerContainer.innerHTML = "";
     splitContainer.innerHTML = "";
     playerPunkte.innerHTML = "";
+    splitPunkte.innerHTML = "";
     winMessage.innerHTML = "";
     dealerCount = 0;
     playerCount = 0;
@@ -228,7 +229,6 @@ function checkWin(x) {
 }
 
 function checkWinSplit(x) {
-    console.log("splitPot ausrechnen", x);
     if (splitCount > 21 && dealerCount <= 21) {
         siegeDealer += x;
         dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
@@ -295,10 +295,10 @@ function checkWinFertig(x, splitToggle) {
     playerPunkte.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
     playerPunkteModal.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
     dealerPunkteModal.innerHTML = "<h3>Punkte Dealer: " + dealerCount + "</h3>";
-    splitPunkteModal.innerHTML = "<h3>Punkte Split: " + splitCount + "</h3>";
 
     if (splitToggle == true) {
-        console.log("splitPot ausrechnen");
+        splitPunkteModal.innerHTML =
+            "<h3>Punkte Split: " + splitCount + "</h3>";
         if (splitCount < 21 && dealerCount < 21) {
             if (splitCount > dealerCount) {
                 siegePlayer += x;
