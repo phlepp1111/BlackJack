@@ -1,3 +1,13 @@
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+:root {
+    --clr-1: rgb(57, 57, 57);
+    --clr-2: white;
+    --clr-3: rgb(57, 57, 57);
+}
 body {
     text-align: center;
     background: #3ca55c; /* fallback for old browsers */
@@ -12,6 +22,12 @@ body {
         #7cb151
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     font-family: Arial, Helvetica, sans-serif;
+    cursor: default;
+}
+footer {
+    position: absolute;
+    left: 2%;
+    bottom: 2%;
 }
 img {
     margin: 0;
@@ -23,13 +39,48 @@ button {
     position: relative;
     margin: 15px;
     padding: 10px;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+button:hover {
+    box-shadow: 0 5px 5px 0 rgb(88, 88, 88);
 }
 dialog {
     border-radius: 0.5rem;
-    background-color: rgba(255, 255, 255, 0.959);
+    border: 1px solid;
+    box-shadow: 0 5px 5px 0 rgb(43, 43, 43);
+    overflow: hidden;
+    font-size: 1.25rem;
+}
+dialog::before,
+dialog::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: -1rem;
+    background: conic-gradient(
+        from var(--gradient-angle),
+        var(--clr-1),
+        var(--clr-2),
+        var(--clr-3),
+        var(--clr-2),
+        var(--clr-1)
+    );
+    border-radius: inherit;
+    animation: rotation 8s linear infinite;
+}
+dialog::after {
+    filter: blur(1rem);
 }
 dialog::backdrop {
     background-color: rgba(86, 86, 86, 0.922);
+}
+#winOkay {
+    background-image: radial-gradient(var(--clr-2), var(--clr-1));
+}
+#winOkay:hover {
+    background-image: radial-gradient(var(--clr-1), var(--clr-2));
+    color: white;
 }
 .buttonContainer {
     position: fixed;
@@ -48,15 +99,13 @@ dialog::backdrop {
     width: 65vw;
     margin: 10px auto 10px;
     display: flex;
-    height: 17em;
+    padding: 10px 0;
 }
 #dealerContainer,
 #playerContainer,
 #playerContainer2 {
     background-color: rgba(255, 255, 255, 0.114);
-
     justify-content: center;
-
     border-radius: 0.5rem;
     box-shadow: 0 5px 5px 0 rgb(63, 63, 63);
 }
@@ -70,6 +119,7 @@ dialog::backdrop {
     margin: 10px auto 10px;
     width: 100%;
     flex-wrap: wrap;
+    padding: 10px 0;
 }
 #playerContainer {
     display: flex;
@@ -100,15 +150,18 @@ dialog::backdrop {
     margin: 20px;
     border: 1px solid black;
     border-radius: 0.5rem;
+    padding: 5px;
+}
+.SiegeBox {
+    padding: 5px;
 }
 #hitMe {
     background-image: url(./images/card\ back\ red.png);
     background-size: 100%;
     padding: 0;
-    width: 10em;
-    height: 14em;
+    width: 7rem;
+    height: 10rem;
     border-radius: 0.5rem;
-    /* border: 1px solid black; */
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
@@ -125,6 +178,28 @@ dialog::backdrop {
 #hitMe:hover {
     box-shadow: 0 7px 7px 0 rgb(0, 0, 0);
 }
-.splitOFF {
-    display: none;
+
+@media screen and (max-width: 1024px) {
+    h3 {
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 940px) {
+    h3 {
+        font-size: 0.85rem;
+    }
+    #hitMe {
+        width: 5.25rem;
+        height: 7rem;
+        background-image: url(./images/card\ back\ red.png);
+        background-size: 98%;
+    }
+}
+@keyframes rotation {
+    0% {
+        --gradient-angle: 0deg;
+    }
+    100% {
+        --gradient-angle: 360deg;
+    }
 }
