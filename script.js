@@ -13,7 +13,6 @@ const playerPunkteModal = document.getElementById("playerPunkteModal");
 const splitPunkteModal = document.getElementById("splitPunkteModal");
 const splitBtn = document.getElementById("splitBtn");
 const splitContainer = document.getElementById("playerContainer2");
-const splitStand = document.getElementById("splitFertig");
 const splitNewCard = document.getElementById("splitNewCard");
 
 let deck = [];
@@ -25,11 +24,12 @@ let siegePlayer = 0;
 let dealerDraw = [];
 let playerDraw = [];
 let splitDraw = [];
+let splitToggle = false;
 
 document.getElementById("hitMe").addEventListener("click", draw);
 document.getElementById("startGame").addEventListener("click", newGame);
 document.getElementById("fertig").addEventListener("click", function () {
-    checkWinFertig(1);
+    checkWinFertig(1, splitToggle);
 });
 document.getElementById("winOkay").addEventListener("click", newGame);
 document.getElementById("doubleDown").addEventListener("click", doubleDown);
@@ -52,8 +52,10 @@ function newGame() {
     playerContainer.innerHTML = "";
     splitContainer.innerHTML = "";
     playerPunkte.innerHTML = "";
+    winMessage.innerHTML = "";
     dealerCount = 0;
     playerCount = 0;
+    splitToggle = false;
     splitBtn.removeAttribute("class", "splitOFF");
     document.getElementById("doubleDown").removeAttribute("class", "splitOFF");
     splitContainer.setAttribute("class", "splitOFF");
@@ -88,6 +90,7 @@ function split() {
     splitContainer.style.display = "flex";
     splitNewCard.removeAttribute("class", "splitOFF");
     document.getElementById("doubleDown").setAttribute("class", "splitOFF");
+    splitToggle = true;
     playerContainer.removeChild(playerContainer.children[0]);
     let splitCard = playerDraw.splice(0, 1)[0];
     splitDraw.push(splitCard);
@@ -195,39 +198,66 @@ function checkWin(x) {
     if (playerCount > 21 && dealerCount <= 21) {
         siegeDealer += x;
         dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
-        winMessage.innerHTML = "<h3>Dealer Wins!</h3>";
+        winMessage.innerHTML += "<p>Dealer Wins!</p>";
         modal.showModal();
     } else if (dealerCount > 21 && playerCount <= 21) {
         siegePlayer += x;
         playerSiege.innerHTML = "Playersiege: " + siegePlayer;
-        winMessage.innerHTML = "Player Wins!";
+        winMessage.innerHTML += "<p>Player Wins!</p>";
         modal.showModal();
     } else if (playerCount === 21 && dealerCount !== 21) {
         siegePlayer += x;
         playerSiege.innerHTML = "Playersiege: " + siegePlayer;
-        winMessage.innerHTML = "Player Wins!";
+        winMessage.innerHTML += "<p>Player Wins!</p>";
         modal.close();
         modal.showModal();
     } else if (dealerCount === 21 && playerCount !== 21) {
         siegeDealer += x;
         dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
-        winMessage.innerHTML = "Dealer Wins!";
+        winMessage.innerHTML += "<p>Dealer Wins!</p>";
         modal.close();
         modal.showModal();
     } else if (playerCount === 21 && dealerCount === 21) {
-        winMessage.innerHTML = "Unentschieden!";
+        winMessage.innerHTML += "<p>Unentschieden!</p>";
         modal.close();
         modal.showModal();
     } else if (playerCount > 21 && dealerCount > 21) {
-        winMessage.innerHTML = "Unentschieden!";
+        winMessage.innerHTML += "<p>Unentschieden!</p>";
         modal.showModal();
     }
 }
-function checkWinFertig(x) {
+
+function checkWinSplit(x) {
+    console.log("splitPot ausrechnen", x);
+    if (splitCount > 21 && dealerCount <= 21) {
+        siegeDealer += x;
+        dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
+        winMessage.innerHTML += "<p>Dealer Wins!</p>";
+    } else if (dealerCount > 21 && splitCount <= 21) {
+        siegePlayer += x;
+        playerSiege.innerHTML = "Playersiege: " + siegePlayer;
+        winMessage.innerHTML += "<p>Split Wins!</p>";
+    } else if (splitCount === 21 && dealerCount !== 21) {
+        siegePlayer += x;
+        playerSiege.innerHTML = "Playersiege: " + siegePlayer;
+        winMessage.innerHTML = "<p>Split Wins!</p>";
+    } else if (dealerCount === 21 && splitCount !== 21) {
+        siegeDealer += x;
+        dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
+        winMessage.innerHTML += "<p>Dealer Wins!</p>";
+    } else if (splitCount === 21 && dealerCount === 21) {
+        winMessage.innerHTML += "<p>Split Unentschieden!</p>";
+    } else if (splitCount > 21 && dealerCount > 21) {
+        winMessage.innerHTML += "<p>Split Unentschieden!</p>";
+    }
+}
+
+function checkWinFertig(x, splitToggle) {
     modal.close();
     dealerCardsDraw();
     playerCount = 0;
     dealerCount = 0;
+    splitCount = 0;
 
     for (let i = 0; i < playerDraw.length; i++) {
         if (playerDraw[i].punkte === 11) {
@@ -238,6 +268,17 @@ function checkWinFertig(x) {
             }
         } else {
             playerCount += playerDraw[i].punkte;
+        }
+    }
+    for (let i = 0; i < splitDraw.length; i++) {
+        if (splitDraw[i].punkte === 11) {
+            if (splitCount <= 10) {
+                splitCount += splitDraw[i].punkte;
+            } else {
+                splitCount++;
+            }
+        } else {
+            splitCount += splitDraw[i].punkte;
         }
     }
     for (let i = 0; i < dealerDraw.length; i++) {
@@ -254,20 +295,39 @@ function checkWinFertig(x) {
     playerPunkte.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
     playerPunkteModal.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
     dealerPunkteModal.innerHTML = "<h3>Punkte Dealer: " + dealerCount + "</h3>";
+    splitPunkteModal.innerHTML = "<h3>Punkte Split: " + splitCount + "</h3>";
 
+    if (splitToggle == true) {
+        console.log("splitPot ausrechnen");
+        if (splitCount < 21 && dealerCount < 21) {
+            if (splitCount > dealerCount) {
+                siegePlayer += x;
+                playerSiege.innerHTML = "Playersiege: " + siegePlayer;
+                winMessage.innerHTML += "<p>Split Wins!</p>";
+            } else if (dealerCount > splitCount) {
+                siegeDealer += x;
+                dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
+                winMessage.innerHTML += "<p>Dealer Wins!</p>";
+            } else if (dealerCount === splitCount) {
+                winMessage.innerHTML += "<p>Split Unentschieden!</p>";
+            }
+        } else {
+            checkWinSplit(1);
+        }
+    }
     if (playerCount < 21 && dealerCount < 21) {
         if (playerCount > dealerCount) {
             siegePlayer += x;
             playerSiege.innerHTML = "Playersiege: " + siegePlayer;
-            winMessage.innerHTML = "Player Wins!";
+            winMessage.innerHTML += "<p>Player Wins!</p>";
             modal.showModal();
         } else if (dealerCount > playerCount) {
             siegeDealer += x;
             dealerSiege.innerHTML = "Dealersiege: " + siegeDealer;
-            winMessage.innerHTML = "Dealer Wins!";
+            winMessage.innerHTML += "<p>Dealer Wins!</p>";
             modal.showModal();
         } else if (dealerCount === playerCount) {
-            winMessage.innerHTML = "Unentschieden!";
+            winMessage.innerHTML += "<p>Unentschieden!</p>";
             modal.showModal();
         }
     } else {
