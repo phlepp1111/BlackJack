@@ -50,6 +50,7 @@ function newGame() {
     splitDraw = [];
     dealerContainer.innerHTML = "";
     playerContainer.innerHTML = "";
+    splitContainer.innerHTML = "";
     playerPunkte.innerHTML = "";
     dealerCount = 0;
     playerCount = 0;
@@ -85,7 +86,6 @@ function split() {
     splitBtn.setAttribute("class", "splitOFF");
     splitContainer.removeAttribute("class", "splitOFF");
     splitContainer.style.display = "flex";
-    splitStand.removeAttribute("class", "splitOFF");
     splitNewCard.removeAttribute("class", "splitOFF");
     document.getElementById("doubleDown").setAttribute("class", "splitOFF");
     playerContainer.removeChild(playerContainer.children[0]);
@@ -102,7 +102,6 @@ function split() {
 }
 function splitCheck() {
     splitBtn.setAttribute("class", "splitOFF");
-    splitStand.setAttribute("class", "splitOFF");
     splitNewCard.setAttribute("class", "splitOFF");
     // console.log(playerDraw[0].value, playerDraw[1].value);
     if (playerDraw[0].value === playerDraw[1].value) {
