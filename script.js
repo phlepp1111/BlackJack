@@ -1,4 +1,4 @@
-import newDeck from "./deck.json" assert { type: "json" };
+import newDeck from "./deck.json" assert { type: "json" }; //einlesen der Karten aus json-file
 
 const dealerContainer = document.getElementById("dealerContainer");
 const playerContainer = document.getElementById("playerContainer");
@@ -35,15 +35,15 @@ document.getElementById("winOkay").addEventListener("click", newGame);
 document.getElementById("doubleDown").addEventListener("click", doubleDown);
 splitBtn.addEventListener("click", split);
 splitNewCard.addEventListener("click", splitCardsDraw);
-// splitStand.addEventListener("click", splitCardsStand);
 
 newGame();
 
 function doubleDown() {
     draw();
-    checkWinFertig(2);
+    checkWinFertig(2); //double down führt die draw-Funktion einmal aus und überigbt eine 2 für doppelte Punktzahl an die Überprüfungsfunktion
 }
 function newGame() {
+    //setzt alle Punkte und Anzeigen zurück auf default
     modal.close();
     dealerDraw = [];
     playerDraw = [];
@@ -63,6 +63,7 @@ function newGame() {
     splitContainer.style.display = "none";
     splitContainer.style.display = "none";
     deck = [
+        //laden von 6 Kartendecks in den Kartenstapel
         ...newDeck,
         ...newDeck,
         ...newDeck,
@@ -70,11 +71,11 @@ function newGame() {
         ...newDeck,
         ...newDeck,
     ];
-    Shuffle(deck);
+    Shuffle(deck); //Mischen der Karten
+    draw(); //2x Draw Funktion für die beiden Anfangskarten, die der Spieler erhält
     draw();
-    draw();
-    splitCheck();
-    dealerCardsDraw(0);
+    splitCheck(); //Überprüfung ob die beiden Angangskarten den gleichen Wert haben und ob  damit ein Split möglich ist
+    dealerCardsDraw(0); //Ziehen der ersten Karte für den Dealer
 }
 function Shuffle(cards) {
     //Fisher-Yates-Shuffle
@@ -90,10 +91,10 @@ function split() {
     splitBtn.style.display = "none";
     splitContainer.style.display = "flex";
     splitNewCard.style.display = "block";
-    document.getElementById("doubleDown").style.display = "none";
+    document.getElementById("doubleDown").style.display = "none"; //doubledown button verstecken, da split und doubleDown nicht gleichzeitig erlaubt sind
     splitToggle = true;
-    playerContainer.removeChild(playerContainer.children[0]);
-    let splitCard = playerDraw.splice(0, 1)[0];
+    playerContainer.removeChild(playerContainer.children[0]); //eine Karte vom Spieler (optisch)entfernen
+    let splitCard = playerDraw.splice(0, 1)[0]; //hier diese Karte auch aus dem logischen Teil vom Spieler entfernen und dem Split-Stapel hinzufügen
     splitDraw.push(splitCard);
     let card = document.createElement("div");
     card.setAttribute("class", "card ");
@@ -101,28 +102,28 @@ function split() {
     image.setAttribute("src", splitDraw[0].image);
     card.appendChild(image);
     splitContainer.appendChild(card);
-    draw();
-    splitCardsDraw();
+    draw(); //noch eine 2te Karte für den Standard-Spieler ziehen
+    splitCardsDraw(); // eine 2te Karte für den Split-Spieler ziehen
 }
 function splitCheck() {
     splitBtn.style.display = "none";
     splitNewCard.style.display = "none";
-    // console.log(playerDraw[0].value, playerDraw[1].value);
     if (playerDraw[0].value === playerDraw[1].value) {
         splitBtn.style.display = "block";
     }
 }
 function draw() {
-    splitBtn.style.display = "none";
+    splitBtn.style.display = "none"; //verstecken des Split-Buttons, da man keinen Split mehr ausführen darf, sobald man weitere arten gezogen hat
     playerCount = 0;
-    let werte = deck.splice(0, 1)[0];
+    let werte = deck.splice(0, 1)[0]; //eine Karte aus dem Kartenstapel "ziehen" und dem Spielerstapel hinzufügen
     playerDraw.push(werte);
-    playerDraw.sort((a, b) => a.punkte - b.punkte);
+    playerDraw.sort((a, b) => a.punkte - b.punkte); //Spielerstapel-Karten nach Werthöhe sortieren, damit zum Schluss die Asse richtig berechnet werden können
     let card = document.createElement("div");
     card.setAttribute("class", "card ");
     let image = document.createElement("img");
     image.setAttribute("src", werte.image);
     for (let i = 0; i < playerDraw.length; i++) {
+        //hier die Überprüfung, ob ein Ass 1 oder 11 Punkte bekommt
         if (playerDraw[i].punkte === 11) {
             if (playerCount <= 10) {
                 playerCount += playerDraw[i].punkte;
@@ -136,10 +137,11 @@ function draw() {
     card.setAttribute = ("name", werte.suit + " " + werte.value);
     card.appendChild(image);
     playerContainer.appendChild(card);
-    playerPunkte.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
-    playerPunkteModal.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
+    playerPunkte.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>"; //updaten der Spielerpunkte, die während des Spiels angezeigt werden
+    playerPunkteModal.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>"; //updaten der Spielerpunkte, die zum Abschluss des Spiels angezeigt werden
 }
 function splitCardsDraw() {
+    //funktioniert wie die Draw-Funktion, nur für den Split-Spieler
     splitCount = 0;
     let werte2 = deck.splice(0, 1)[0];
     splitDraw.push(werte2);
@@ -167,6 +169,7 @@ function splitCardsDraw() {
 }
 
 function dealerCardsDraw(x) {
+    //Draw-Funktion für den Dealer. Wird, bis auf die erste Karte zum Start, erst nachdem der Spieler fertig ist ausgeführt
     dealerCount = 0;
     let werte1 = deck.splice(0, 1)[0];
     dealerDraw.push(werte1);
@@ -190,13 +193,16 @@ function dealerCardsDraw(x) {
     card1.appendChild(image1);
     dealerContainer.appendChild(card1);
     if (x === 0) {
+        //wenn der Funktion die 0 mit übergeben wird, soll nur eine Karte gezogen werden und im Anschluss die Funktion beendet werden, ansonsten...
         return;
     }
     while (dealerCount < 17) {
+        //...ruft sich die Funktion erneut selber auf bis der Dealer mindestens 16 Punkte hat.
         dealerCardsDraw(1);
     }
 }
 function checkWin(x) {
+    // Funktion zum Überprüfen ob Dealer, Player oder beide über 21 Punkte kommen.
     if (playerCount > 21 && dealerCount <= 21) {
         siegeDealer += x;
         dealerSiege.innerHTML = "Siege Dealer: " + siegeDealer;
@@ -204,12 +210,12 @@ function checkWin(x) {
         modal.showModal();
     } else if (dealerCount > 21 && playerCount <= 21) {
         siegePlayer += x;
-        playerSiege.innerHTML = "Playersiege: " + siegePlayer;
+        playerSiege.innerHTML = "Siege Player: " + siegePlayer;
         winMessage.innerHTML += "<p>Player Wins!</p>";
         modal.showModal();
     } else if (playerCount === 21 && dealerCount !== 21) {
         siegePlayer += x;
-        playerSiege.innerHTML = "Playersiege: " + siegePlayer;
+        playerSiege.innerHTML = "Siege Player: " + siegePlayer;
         winMessage.innerHTML += "<p>Player Wins!</p>";
         modal.close();
         modal.showModal();
@@ -230,6 +236,7 @@ function checkWin(x) {
 }
 
 function checkWinSplit(x) {
+    //wie CheckWin-Funktion, nur dass sie Split und Dealer vergleicht, statt Player und Dealer
     if (splitCount > 21 && dealerCount <= 21) {
         siegeDealer += x;
         dealerSiege.innerHTML = "Siege Dealer: " + siegeDealer;
@@ -255,7 +262,8 @@ function checkWinSplit(x) {
 
 function checkWinFertig(x, splitToggle) {
     modal.close();
-    dealerCardsDraw();
+    dealerCardsDraw(); //Player hat seine Spielzüge beendet, jetzt zieht der Dealer seine (restlichen) Karten
+    //Da jetzt alle Spielparteien ihre finalen Karten gezogen haben, werden die Punktecounts noch einmal auf null gesetzt und ein letztes mal die genauen Punkte ausgerechnet
     playerCount = 0;
     dealerCount = 0;
     splitCount = 0;
@@ -293,11 +301,12 @@ function checkWinFertig(x, splitToggle) {
             dealerCount += dealerDraw[i].punkte;
         }
     }
-    playerPunkte.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
+    playerPunkte.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>"; //Updaten von Punktzahlen auf dem Spielfeld und im anschließenden Modal
     playerPunkteModal.innerHTML = "<h3>Punkte Player: " + playerCount + "</h3>";
     dealerPunkteModal.innerHTML = "<h3>Punkte Dealer: " + dealerCount + "</h3>";
 
     if (splitToggle == true) {
+        //wenn ein Split durchgeführt wurde, werden hier die Splitpunkte mit den Dealerpunkten verglichen
         splitPunkteModal.innerHTML =
             "<h3>Punkte Split: " + splitCount + "</h3>";
         if (splitCount < 21 && dealerCount < 21) {
@@ -317,6 +326,7 @@ function checkWinFertig(x, splitToggle) {
         }
     }
     if (playerCount < 21 && dealerCount < 21) {
+        //vergleichen der Spielerpunkte mit den Dealerpunkten
         if (playerCount > dealerCount) {
             siegePlayer += x;
             playerSiege.innerHTML = "Siege Player: " + siegePlayer;
